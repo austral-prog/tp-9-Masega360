@@ -1,48 +1,44 @@
-
-def create_inventory(items):
-    """Create a dict that tracks the amount (count) of each element on the `items` list.
-
-    :param items: list - list of items to create an inventory from.
-    :return: dict - the inventory dictionary.
-    """
-    return {}
-
-
-def add_items(inventory, items):
-    """Add or increment items in inventory using elements from the items `list`.
-
-    :param inventory: dict - dictionary of existing inventory.
-    :param items: list - list of items to update the inventory with.
-    :return: dict - the inventory updated with the new items.
-    """
-    return {}
+def create_inventory(liston):
+    seton = set(liston)
+    inventory = dict()
+    for e in seton:
+        lego = liston.count(e)
+        inventory[e] = lego
+    return inventory
 
 
-def decrement_items(inventory, items):
-    """Decrement items in inventory using elements from the `items` list.
+def add_items(mapon, liston):
+    lestat = list()
+    if mapon != {}:
+        for key in mapon.keys():
+            cant = mapon[key]
+            for i in range(0,cant):
+                lestat.append(key)
+        return create_inventory(lestat + liston)
+    else:
+        return create_inventory(liston)
 
-    :param inventory: dict - inventory dictionary.
-    :param items: list - list of items to decrement from the inventory.
-    :return: dict - updated inventory with items decremented.
-    """
-    return {}
+
+def decrement_items(mapon, liston):
+    dic = dict()
+    inventory = create_inventory(liston)
+    for key in inventory.keys():
+        num = mapon[key] - inventory[key]
+        if num < 0: num = 0
+        dic[key] = num
+    return dic
 
 
-def remove_item(inventory, item):
-    """Remove item from inventory if it matches `item` string.
-
-    :param inventory: dict - inventory dictionary.
-    :param item: str - item to remove from the inventory.
-    :return: dict - updated inventory with item removed. Current inventory if item does not match.
-    """
-    return {}
+def remove_item(mapet, str):
+    if str in mapet.keys():
+        del mapet[str]
+    return mapet
 
 
 def list_inventory(inventory):
-    """Create a list containing all (item_name, item_count) pairs in inventory.
-
-    :param inventory: dict - an inventory dictionary.
-    :return: list of tuples - list of key, value pairs from the inventory dictionary.
-    """
-    return {}
+    tuple_list = list()
+    for key in inventory.keys():
+        if inventory[key] > 0:
+            tuple_list.append((key, inventory[key]))
+    return tuple_list
 
